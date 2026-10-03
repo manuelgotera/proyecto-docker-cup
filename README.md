@@ -31,15 +31,6 @@ De esta manera, el Frontend no tiene acceso directo a la Base de Datos en ningú
 
 ---
 
-## Escalado de Instancias
-
-Siguiendo las especificaciones de escalado para las capas de Frontend y Backend, se definieron réplicas diferenciadas entre entornos mediante la directiva deploy:
-
-- Dev: 2 instancias para el Frontend (web-dev) y 4 instancias para la API (api-dev).
-- QA: 4 instancias para el Frontend (web-qa) y 4 instancias para la API (api-qa).
-
----
-
 ```bash
 git clone [https://github.com/manuelgotera/proyecto-docker-cup.git](https://github.com/manuelgotera/proyecto-docker-cup.git)
 cd proyecto-docker-cup

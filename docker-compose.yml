@@ -1,11 +1,14 @@
 version: '3.8'
 
 services:
+  # --- ENTORNO DEV ---
   web-dev:
     container_name: web-dev
     image: nginx:alpine
     ports:
       - "4001:80"
+    deploy:
+      replicas: 2
     networks:
       - red-frontend-dev
 
@@ -14,6 +17,8 @@ services:
     image: node:alpine
     ports:
       - "4002:3000"
+    deploy:
+      replicas: 4
     networks:
       - red-frontend-dev
       - red-backend-dev
@@ -28,8 +33,44 @@ services:
     networks:
       - red-backend-dev
 
+  # --- ENTORNO QA ---
+  web-qa:
+    container_name: web-qa
+    image: nginx:alpine
+    ports:
+      - "5001:80"
+    deploy:
+      replicas: 4
+    networks:
+      - red-frontend-qa
+
+  api-qa:
+    container_name: api-qa
+    image: node:alpine
+    ports:
+      - "5002:3000"
+    deploy:
+      replicas: 4
+    networks:
+      - red-frontend-qa
+      - red-backend-qa
+
+  bd-qa:
+    container_name: bd-qa
+    image: postgres:alpine
+    ports:
+      - "5003:5432"
+    environment:
+      POSTGRES_PASSWORD: manuel1828
+    networks:
+      - red-backend-qa
+
 networks:
   red-frontend-dev:
     driver: bridge
   red-backend-dev:
+    driver: bridge
+  red-frontend-qa:
+    driver: bridge
+  red-backend-qa:
     driver: bridge

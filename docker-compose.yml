@@ -1,22 +1,18 @@
-version: '3.8'
-
 services:
   # --- ENTORNO DEV ---
   web-dev:
-    container_name: web-dev
     image: nginx:alpine
     ports:
-      - "4001:80"
+      - "4001-4005:80"
     deploy:
       replicas: 2
     networks:
       - red-frontend-dev
 
   api-dev:
-    container_name: api-dev
     image: node:alpine
     ports:
-      - "4002:3000"
+      - "4010-4015:3000"
     deploy:
       replicas: 4
     networks:
@@ -35,20 +31,18 @@ services:
 
   # --- ENTORNO QA ---
   web-qa:
-    container_name: web-qa
     image: nginx:alpine
     ports:
-      - "5001:80"
+      - "5001-5006:80"
     deploy:
       replicas: 4
     networks:
       - red-frontend-qa
 
   api-qa:
-    container_name: api-qa
     image: node:alpine
     ports:
-      - "5002:3000"
+      - "5010-5015:3000"
     deploy:
       replicas: 4
     networks:

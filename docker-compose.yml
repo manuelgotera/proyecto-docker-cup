@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  web-dev:
+    container_name: web-dev
+    image: nginx:alpine
+    ports:
+      - "4001:80"
+
+  api-dev:
+    container_name: api-dev
+    image: node:alpine
+    ports:
+      - "4002:3000"
+
+  bd-dev:
+    container_name: bd-dev
+    image: postgres:alpine
+    ports:
+      - "4003:5432"
+    environment:
+      POSTGRES_PASSWORD: manuel1828
